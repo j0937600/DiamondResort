@@ -1,0 +1,51 @@
+body{
+	width:90%;
+	left:5%;
+	position:absolute;
+}
+#sidebar{
+	left:0%;
+}
+table {
+    box-sizing: border-box;
+    overflow: hidden;
+    margin: 1em auto;
+    border-collapse: collapse;
+    min-width: 23em;
+    width: 90%;
+    max-width: 56em;
+    border-radius: 0.5em;
+    box-shadow: 0 0 0.5em #000;
+    position:relative;
+    z-index:1;	
+}
+
+tbody {
+    background-color: white;
+    flex-direction: column;
+    color: #000;
+}
+
+  th, td {
+    border: 1px solid gray;
+    text-align: center;
+  }
+  
+  th{
+     background:black;
+     color:white;
+     text-align: center;
+  }
+img#Add{
+	width:50px;
+	position:fixed;
+	left:10%;
+	top:10%;
+}
+table tr:nth-child(2n+1) td{
+	background-color:white;
+}
+button.btn{
+	position:absolute;
+	left:47%;
+}

@@ -1,0 +1,333 @@
+/* @import url("https://fonts.googleapis.com/css?family=Questrial"); */
+html {
+  min-height: 100%;
+}
+
+body {
+  width: 100%;
+    height: 100%;
+    background-position: center;
+    background-image: url("<%=request.getContextPath()%>/img/activity/bg1.png");
+    background-size: cover;
+    background-attachment: fixed;
+}
+div.black{
+	height:70px;
+	background-color: rgb(0, 0, 0);
+	border-radius: 0%;
+}
+#slick{
+  width:100%;
+  height:400px;
+  margin: auto;
+}
+#slick div{
+  width:100%;
+  height:400px
+}
+#slick div img{
+	object-fit:cover;
+/*   background-size:contain; */
+  width: 100%;
+  margin: auto;
+  max-height : 100%;
+}
+
+.box {
+  width: 1200px;
+  height:0px;
+  margin: 10% auto;
+  position: relative;
+}
+
+#card-container {
+  position: relative;
+  margin: 30px;
+  width: 300px;
+  height: 200px;
+  z-index: 1;
+  float: left;
+  perspective: 1000px;
+  margin-left: 60px;
+}
+
+.box img {
+  width: 300px;
+  height: 200px;
+  border-radius:20px;
+  padding: 3px;
+  border: 2px ridge rgb(250, 211, 85);
+}
+
+#card, #card2, #card3 {
+  position: relative;
+  border-radius:20px;
+  margin-left:15px;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  margin-right: 50px;
+  transform-style: preserve-3d;
+  transition: all .8s linear;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#card:hover {
+  transform: rotateY(180deg);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#card2:hover {
+  transform: rotateY(-180deg);
+  box-shadow: -5px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+#card3:hover {
+  transform: rotateX(180deg);
+  box-shadow: 5px -5px 15px rgba(0, 0, 0, 0.3);
+}
+#card3 .back {
+  transform: rotateX(-180deg);
+  
+}
+.back-face-one{
+  border:2px double;
+  padding: 10px;
+  margin-top: 90px;
+  padding: 5px;
+  opacity: 0;
+  background-color: rgb(0, 0, 0,0.3);
+}
+.back-face-one:hover{
+  opacity: 1;
+}
+.back-face-one p{
+  font-family: ;
+  font-style: oblique;
+  color: rgb(255, 255, 255);
+  
+}
+.face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+.back {
+  display: block;
+  transform: rotateY(180deg);
+  box-sizing: border-box;
+  padding: 10px;
+  text-align: center;
+  opacity: 0.7;
+  background: #faeac1;
+  border-radius:20px;
+}
+
+h1, p {
+  font-family: "Questrial", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px; 
+}
+h1 {
+  font-size: 1.2em;
+  padding-top: 15px;
+  color: #DD899E;
+}
+
+p {
+  font-size: .5em;
+}
+
+.date {
+  color: #D0B2AF;
+}
+/* angle-ICON */
+.angle-double-down{
+    position: absolute;
+    bottom: 20px;
+}
+
+/*SHARE-ICON*/
+.icon-share{
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+  opacity: 0.4;
+}
+.icon-share a:hover{
+  opacity: 1;
+  color:rgb(237, 240, 72);
+}
+
+/*活動list*/
+#collapseExample .card-body{
+  margin:auto;
+  width:900px;
+  height:200px;
+  margin-buttom:20px;
+  text-align: center;
+  opacity: 0.9;
+  background-color: rgb(212, 219, 252);
+  border-radius: 30% 15% 15% 30%;  
+}
+.list-img{
+  width:200px;
+  height:150px;
+  border-radius: 20px;
+  paddding:5px;
+  margin-left:100px;
+}
+.list-img img{
+  width:200px;
+  height:150px;
+  border:3px outset;
+  border-color:  rgb(253, 21, 21);
+  border-radius: 20px;
+  paddding:5px;
+  
+}
+.list-img img:hover{
+	transform: scale(1.05, 1.05);
+}
+.list-context{
+  width:350px;
+  height:150px;
+  border:1px solid;
+  margin-left:220px;
+  margin-top:-150px;
+  background-color: rgb(255, 255, 255);
+}
+.list-context .label{
+	width:350px;
+	margin:auto;
+	vertical-align: bottom ; 
+}
+.list-context p{
+  width:80px;
+  margin-left: 0px;
+  margin-top: -5px;
+
+}
+.list-context .line{
+  margin-top: -5px;
+  margin:auto;
+  width:320px;
+  border:1px solid;
+}
+#collapseExample button{
+  margin-right:-1080px;
+  margin-top: -95px;
+}
+
+/*互動視窗*/
+.modal-content{
+   width:450px;
+   margin:auto;
+}
+.reserve-info div{
+   width:190px;
+   margin:0px auto;
+   text-align:cener;
+}
+.reserve-info input{
+	width:90px;
+	border-style:1px outset;
+	vertical-align:middle;
+}
+.modal-body{
+   width:350px;
+   height:200px;
+}
+.list-context label {
+    margin-left:auto;
+}
+.input-group-prepend .input-group-text{
+  width:70px;
+  margin-top:-10px;
+  margin-left:10px;
+}
+.input-group-prepend .form-control{
+  width:250px;
+  margin-left:10px;
+}
+.input-group-prepend{
+  margin:10px auto;
+  width:80px;
+  margin-left:0px;
+}
+
+.modal-body{
+  margin:10px auto;
+  width:250px;
+}
+.reserve-info label{
+  vertical-align:middle;
+  line-height: 30px;
+  position:relative;
+  margin:0px;
+  width:90px;
+  border:1px outset;
+}
+
+.input-group .custom-select{
+  text-align: center;
+  font-size:18px;
+  height:48px;
+}
+/*已預約*/
+#multiCollapseExample2 .card-body{
+  margin:auto;
+  width:900px;
+  height:200px;
+  margin-buttom:20px;
+  text-align: center;
+  opacity: 0.9;
+  background-color: rgb(209, 253, 255);
+  border-radius: 35% 50% 50% 35%;
+}
+.list-reserve{
+  width:200px;
+  height:150px;
+  border-radius: 20px;
+  paddding:5px;
+  margin-left:100px;
+}
+.list-reserve img{
+  width:200px;
+  height:150px;
+  border:3px outset;
+  border-color: rgb(226, 178, 21);
+  border-radius: 20px;
+  paddding:5px;
+  
+}
+
+/*取消活動modal*/
+.cancel-order {
+	width:350px;
+	height:550px;
+}
+.list-cancel{
+	margin:0px auto;
+	width:250px;
+	height:400px;
+}
+.list-cancel-img {
+	margin:auto;
+	width:200px;
+	height:150px;
+}
+.list-cancel-img img{
+	margin-top:10px;
+	width:200px;
+	height:150px;
+}
+.list-cancel-context{
+	 text-align:center;
+     margin:0px auto;
+     height:300px;
+}
+.list-cancel-context input{
+	text-align:center;
+}

@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//WebContent/frontend/roomrsv/available.jsp=UTF-8
+encoding//WebContent/frontend/roomrsv/booking.jsp=UTF-8
+encoding//WebContent/frontend/roomrsv/bookingResult.jsp=UTF-8
+encoding//src/com/shoppingCart/model/CartDAO.java=UTF-8

@@ -1,0 +1,37 @@
+body {
+    background: #eee;
+}
+div.card {
+    width: 50%;
+    padding: 60px auto;
+    margin: 10% auto;
+    background-color: gold;
+    border-radius: 10px;
+    display:block;
+}
+
+.right {
+    box-sizing: border-box;
+    display: inline-block;
+    text-align: center;
+    margin-left: 30px;
+    width:40%;
+}
+p {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 0px;
+}
+.head {
+    box-sizing: border-box;
+    margin-top: 80px;
+}
+.section {
+    width: 50%;
+    height: 30%;
+    text-align: center;
+    background-color: gray;
+    margin: 0 auto;
+    margin-top: -100px;
+    display: none;
+}

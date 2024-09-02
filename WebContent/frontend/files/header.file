@@ -1,0 +1,102 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	 <!-- preloader -->
+	<div id="preloder">
+		<img id="preloaderpic"
+			src="${pageContext.request.contextPath}/img/loading.png" />
+		<div class="loader"></div>
+	</div>
+	 <!-- preloader -->
+	
+	
+	 <!-- offcanvas menu start -->
+	 
+	<div class="offcanvas-menu-overlay"></div>
+	<div class="canvas-open">
+		<i class="icon_menu"></i>
+	</div>
+	<i class="fas fa-user-circle offcanvs-log-in"></i>
+	<div class="offcanvas-menu-wrapper">
+		<div class="canvas-close">
+			<i class="icon_close"></i>
+		</div>
+		<div class="header-configure-area">
+			<a href="<%=request.getContextPath()%>/frontend/roomrsv/available.jsp" class="bk-btn">a</a>
+		</div>
+		<nav class="mainmenu mobile-menu">
+			<ul>
+				<c:if test="${member != null}">
+					<li><a href="<%=request.getContextPath()%>/frontend/guestSection.jsp" class="nav-evnet" class="nav-evnet">b</a></li>
+				</c:if>
+				<li><a href="<%=request.getContextPath()%>/frontend/shop/shopPage.jsp" class="nav-evnet" class="nav-evnet">Shopping</a></li>
+				<li><a class="nav-event" href="${pageContext.request.contextPath}/frontend/rooms/rooms.jsp">room</a></li>
+				<li><a href="${pageContext.request.contextPath}/login.jsp" class="nav-event log-in">Login</a></li>
+				<li><a href="<%=request.getContextPath()%>/frontend/registration.jsp" class="nav-event" style="color: rgb(240, 218, 162)">Register</a></li>
+			</ul>
+		</nav>
+		<div id="mobile-menu-wrap"></div>
+		<ul class="top-widget">
+			<li><i class="fa fa-phone"></i> (08) 9453 9487</li>
+			<li><i class="fa fa-envelope"></i> diamondresort101@gmail.com</li>
+		</ul>
+	</div>
+	
+	 <!-- offcanvas menu end -->
+	 
+	 <!-- header menu -->
+	<header class="header-section">
+		<div class="menu-item">
+			<div class="nav-menu">
+				<nav class="mainmenu">
+					<ul class="mainmenu-row">
+					<div class="logobox">
+							<a href="${pageContext.request.contextPath}/frontend/index.jsp"><img
+								src="${pageContext.request.contextPath}/img/logo.png"/>
+							</a>
+					</div>
+					<li  class="nav-list"><a href="<%=request.getContextPath()%>/frontend/roomrsv/available.jsp" class="nav-event">Reserve Rooms</a></li>
+					<li  class="nav-list"><a href="#" class="nav-event">New Information</a></li>
+						
+						<li  class="nav-list"><a href="<%=request.getContextPath()%>/frontend/shop/shopPage.jsp" class="nav-event">Shop</a></li>
+						
+						<li  class="nav-list"><a class="nav-event"
+							href="${pageContext.request.contextPath}/frontend/rooms/rooms.jsp">Rooms</a>
+						</li>
+						<jsp:useBean id="bkodSvc2" scope="page" class="com.bookingorder.model.BookingOrderService"/>
+						<%	 
+							boolean isGuest = false;
+							if (member != null) {
+								isGuest = bkodSvc2.getAllByMbId(member.getMb_id()).stream().anyMatch(e -> e.getBk_status().equals("2"));
+							} 
+						%>
+						<c:if test="<%=isGuest%>">
+						<li class="nav-list"><a href="<%=request.getContextPath()%>/frontend/guestSection.jsp" class="nav-event"><i class="fas fa-glass-cheers"></i>Guest Service</a>
+							<ul class="dropdown">
+								<li><a href="<%=request.getContextPath()%>/frontend/activity/activity.jsp">Reserve Activity</a></li>
+								<li><a href="<%=request.getContextPath()%>/frontend/services/services.jsp?serv_type_no=1">Reserve Service</a></li>
+								<li><a href="<%=request.getContextPath()%>/frontend/meal/meal.jsp">Order Food</a></li>
+							</ul>
+						</li>
+						</c:if>
+						<li class="nav-list"><a class="nav-event"> 
+						<c:choose>
+									<c:when test="${member != null}"><i class="far fa-gem"></i></i></a>
+							<ul class="dropdown">
+								<li><a href="${pageContext.request.contextPath}/frontend/members/memberInfo.jsp">Member Profile</a></li>
+								<li><a href="${pageContext.request.contextPath}/frontend/members/memberBooking.jsp">My Vacation</a></li>
+								<li><a href="${pageContext.request.contextPath}/frontend/members/memberHistory.jsp">Shopping Order</a></li>
+								<li><a
+									href="${pageContext.request.contextPath}/LoginHandler?mb_email=${member.mb_email}&action=member-logout&location=${pageContext.request.requestURL}">Log out</a></li>
+							</ul></li>
+						</c:when>
+						<c:otherwise>
+							<i class="fas fa-user-circle log-in"></i>
+							</a>
+						</c:otherwise>
+						</c:choose>
+						</li>
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</header>
+	 <!-- header menu -->

@@ -1,0 +1,139 @@
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<div class="login-window-overlay"></div>
+<div class="login-window hide-login-window">
+<div class="cont">
+			<form id="login-form" method="POST"
+				action="<%=request.getContextPath()%>/LoginHandler">
+				<div class="login-form sign-in">
+					<h2>登入享有更多服務!</h2>
+					<label> <span><i class="fas fa-user-circle"></i></span> <input
+						type="email" id="mb_email" name="mb_email" autocomplete="false" />
+					</label> <label> <span><i class="fas fa-key"></i></span> <input
+						type="password" id="mb_pwd" name="mb_pwd" />
+					</label>
+					<p class="forgot-pass">
+						<a href="<%=request.getContextPath()%>/frontend/forgetPwd.jsp">忘記密碼?</a>
+					</p>
+					<input type="text" name="pass" value="pass" style="display: none;" />
+					<input type="text" name="action" value="member-login" style="display: none;" />
+					<input type="text" name="location" value="${pageContext.request.requestURI}?${pageContext.request.queryString}" style="display: none;" />
+					<button type="submit" class="submit hover-shadow login-button">登入</button>
+				</div>
+			</form>
+			<div class="sub-cont">
+				<div class="img">
+					<div class="img__text m--up">
+						<h2>新訪客?</h2>
+						<p>加入戴蒙尊榮會員，開始享受您的奢華假期!</p>
+					</div>
+					<div class="img__text m--in">
+						<h2>會員？</h2>
+						<p>如果您已是會員，點選會員登入吧！We've missed you!</p>
+					</div>
+					<div class="img__btn">
+						<span class="m--up">註冊會員</span> <span class="m--in">會員登入</span>
+					</div>
+				</div>
+				<form id="registration-form"
+					action="/CEA101G1/frontend/registration.jsp"
+					method="POST"
+					target="_blank">
+					<div class="form sign-up">
+						<h2>期待您的加入</h2>
+						<label> <span>姓(Last Name)</span> <input type="text"
+							name="temp-lname" autocomplete="false" maxlength="20" required />
+						</label> <label> <span>名(First Name)</span> <input type="text"
+							name="temp-fname" autocomplete="false" maxlength="20" required />
+						</label> <label> <span>EMAIL</span> <input type="email"
+							id="temp-email" name="temp-email"
+							pattern="^.+[\x40]{1}.+[.]{1}.*$" autocomplete="false" required />
+						</label> <label> <span>密碼</span> <input type="password"
+							id="temp-password" name="temp-password" required />
+						</label> <label> <span>確認密碼</span> <input type="password"
+							id="temp-confirm-password" name="temp-confirm-password" required />
+						</label>
+						<button type="submit" class="submit hover-shadow login-button">立即註冊</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+	<script>
+		
+$(document).ready(function() {
+	/*------------------
+		   確認Email沒有重複
+		--------------------*/
+	$("#registration-form").submit(function(event) {
+		event.preventDefault();
+		let form = $(this);
+		let email = $("#temp-email").val();
+		let password = $("#temp-password").val();
+		let confirmPassword = $("#temp-confirm-password").val();
+		if (password !== confirmPassword) {
+			swalfire("密碼確認錯誤", "請確認兩次密碼輸入是否相同")
+			return;
+		}
+		let data = new FormData();
+		data.append("email", email);
+		data.append("action", "email_confirm");
+		let xhr = new XMLHttpRequest();
+		xhr.open("post", "<%=request.getContextPath()%>/MembersServlet");
+		xhr.onload = function() {
+			if (xhr.readyState === xhr.DONE) {
+				if (xhr.status === 200) {
+					console.log("Status 200")
+					if (xhr.responseText === "used") {
+						swalfire("您輸入的EMAIL已註冊", "請從會員登入進入")
+					} else {
+						form.unbind('submit').submit();
+					}
+				}
+			}
+		};
+		xhr.send(data);
+	});
+	/*------------------
+           登入確認
+    --------------------*/
+	$("#login-form").submit(function(event) {
+		event.preventDefault();
+		let form = $(this);
+		let mb_email = $("#mb_email").val();
+		let mb_pwd = $("#mb_pwd").val();
+		let data = new FormData();
+		data.append("mb_email", mb_email);
+		data.append("mb_pwd", mb_pwd);
+		data.append("action", "member-login");
+		let xhr = new XMLHttpRequest();
+		xhr.open("post", "<%=request.getContextPath()%>/LoginHandler");
+		xhr.onload = function() {
+			if (xhr.readyState === xhr.DONE) {
+				if (xhr.status === 200) {
+					if (xhr.responseText === "email_not_found") {
+						swalfire("此EMAIL尚未註冊會員", "請重新註冊會員")
+					} else if (xhr.responseText === "pwd_incorrect") {
+						swalfire("密碼錯誤", "超過三次將封鎖帳號")
+					} else {
+						form.unbind('submit').submit();
+					}
+				}
+			}
+		};
+		xhr.send(data);
+	})
+	/*------------------
+       通用錯誤訊息發射～
+    --------------------*/
+	function swalfire(msgTitle, msg) {
+		Swal.fire({
+			position: "center",
+			icon: "error",
+			title: msgTitle,
+			text: msg,
+			showConfirmButton: false,
+			timer: 1500,
+		});
+	}
+});
+	</script>
